@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OV-PanoReferSeg: Open-Vocabulary Panoramic Referring Segmentation</title>
+    
+    <!-- 网页标签页图标 (Favicon) -->
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    
+    <!-- 引入外部 CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入漂亮的字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 1. 动态极光背景层 (CSS) -->
+    <div class="bg-animation"></div>
+    
+    <!-- 2. 动态粒子连线背景层 (Canvas) -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">OV-PanoReferSeg</div>
+            <nav>
+                <a href="#abstract">Abstract</a>
+                <a href="#video">Demo</a>
+                <a href="#method">Method</a>
+                <a href="#dataset">Dataset</a>
+                <a href="#realworld">Real-World</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主视觉区 (Hero) -->
+    <section class="hero">
+        <!-- 文字和按钮部分 -->
+        <div class="hero-content">
+            <!-- 大 Logo -->
+            <img src="assets/logo.png" alt="Project Logo" class="main-logo">
+            
+            <h1>Advancing ERP-Native Open-Vocabulary<br>Panoramic Referring Segmentation</h1>
+            <p class="authors">
+                Anonymous Authors<br>
+                <span class="affiliation">Anonymous Institution</span>
+            </p>
+            
+            <div class="buttons">
+                <a href="#" class="btn primary">Paper (PDF)</a>
+                <a href="#" class="btn secondary">Code</a>
+                <a href="#" class="btn secondary">Dataset</a>
+            </div>
+        </div>
+
+        <!-- Teaser 图：移出 hero-content，使其能够更宽地展示 -->
+        <div class="teaser-wrapper glass-card fade-in">
+            <img src="assets/teaser.png" alt="Task Overview">
+            <p class="caption">Overview of the OV-PanoReferSeg task: predicting a pixel-level mask given a 360° panorama and a free-form referring expression.</p>
+        </div>
+    </section>
+
+    <!-- 内容区 -->
+    <main>
+        <!-- 摘要 -->
+        <section id="abstract" class="container glass-card fade-in">
+            <h2>Abstract</h2>
+            <p>
+                Panoramic referring segmentation is a critical prerequisite for embodied agents to interact with human instructions. To truly achieve this, an ERP-native perception paradigm is an effective solution. We introduce <b>OV-PanoReferSeg</b>, a pixel-level benchmark designed for open-vocabulary panoramic referring segmentation. It contains over 11,000 referring instances, featuring a long-tail category distribution and challenging panoramic characteristics. Furthermore, we propose an ERP-native decoupled framework as a strong baseline. Extensive experiments demonstrate that our method outperforms zero-shot and fine-tuned baselines on the Novel and OOD splits, with the <i>H<sub>B,N</sub></i> metric reaching <b>0.6305</b>.
+            </p>
+        </section>
+
+        <!-- 核心 Demo 视频 -->
+        <section id="video" class="container fade-in">
+            <h2>Real-World Demo</h2>
+            <p class="desc">Deployment on a Unitree GO2 EDU quadruped robot equipped with a 360° panoramic camera.</p>
+            <div class="video-wrapper glass-card">
+                <!-- 请确保 assets 文件夹下有 demo.mp4 -->
+                <video width="100%" controls autoplay loop muted>
+                    <source src="assets/demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <!-- 方法架构 -->
+        <section id="method" class="container fade-in">
+            <h2>Method</h2>
+            <div class="image-card glass-card">
+                <img src="assets/pipeline.png" alt="Pipeline Overview">
+                <p class="caption">Overview of the proposed ERP-native decoupled framework.</p>
+            </div>
+        </section>
+
+        <!-- 数据集 -->
+        <section id="dataset" class="container fade-in">
+            <h2>OV-PanoReferSeg Benchmark</h2>
+            <div class="stats-grid">
+                <div class="stat-item glass-card">
+                    <h3>4,968</h3>
+                    <p>Panoramas</p>
+                </div>
+                <div class="stat-item glass-card">
+                    <h3>11,013</h3>
+                    <p>Instances</p>
+                </div>
+                <div class="stat-item glass-card">
+                    <h3>2,127</h3>
+                    <p>Vocabulary Size</p>
+                </div>
+                <div class="stat-item glass-card">
+                    <h3>50%+</h3>
+                    <p>Complex Spatial Desc.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 真实环境 -->
+        <section id="realworld" class="container fade-in mb-5">
+            <h2>Real-World Deployment</h2>
+            <p class="desc">Qualitative results on small targets, multiple instances, normal references, and partial occlusion.</p>
+            <div class="image-card glass-card">
+                <img src="assets/go2.png" alt="GO2 Deployment">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Anonymous Authors. All rights reserved.</p>
+    </footer>
+
+    <!-- 引入粒子特效脚本 -->
+    <script src="particles.js"></script>
+    
+    <!-- 滚动渐入动画 JS -->
+    <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
